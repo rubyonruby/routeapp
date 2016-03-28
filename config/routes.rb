@@ -2,11 +2,17 @@ Rails.application.routes.draw do
 
   
   resources :users do
-    resources :posts
+    #resources :posts
+    member do
+     get :search , constraints: { id: /\d{1,}/}
+    end
   
   end
-
   #resource :post
+
+  namespace :api do
+    resources :users
+  end
   
   root "welcome#index"
 
